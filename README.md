@@ -1,15 +1,15 @@
 # OculusPassthroughDemos
 Demos with Oculus Passthrough API from tutorials done in [YouTube](https://www.youtube.com/dilmerv)
 
-***Step By Step YouTube Tutorial Available*** [Here](https://www.youtube.com/watch?v=SJANudr3Wu0) 
+***Step By Step YouTube Tutorial Available*** :rocket: [Here](https://www.youtube.com/watch?v=SJANudr3Wu0) :exclamation:
 
 - Passthrough API Demo:
 <img src="https://github.com/dilmerv/OculusPassthroughDemos/blob/master/docs/images/OculusPassthroughAPI_1.gif" width="300">
 
 # Requirements
-1. Unity 2019 LTS or greater
-2. Unity Oculus Integration [v31](https://developer.oculus.com/downloads/package/unity-integration-archive/) or greater
-3. Oculus Device Software v31 or greater
+1. Unity 2019 LTS or greater :heavy_check_mark:
+2. Unity Oculus Integration [v31](https://developer.oculus.com/downloads/package/unity-integration-archive/) or greater :heavy_check_mark:
+3. Oculus Device Software v31 or greater :heavy_check_mark:
 
 # Troubleshooting (Steps Required)
 
