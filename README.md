@@ -30,3 +30,11 @@ Submit an issue if you encounter any problems.
 
 1. Passthrough API Oculus [docs](https://developer.oculus.com/experimental/passthrough-api/)
 2. Passthrough API Samples [docs](https://developer.oculus.com/experimental/passthrough-samples/)
+
+# How To Record :video_camera: Mixed Reality Experiences ?
+You may have noticed that black background when recording MR with Oculus Quest 2, well you're not alone, that is actually by design - so how can you record the cool experiences you will be building then? See steps:
+
+1. Download the [Mixed Reality Capture] app onto your Oculus Quest 2
+2. Open the app and write down the IP Address
+3. Download the (MRC) Mixed Reality Capture Tool and OBI Studio software as indicated [here](https://creator.oculus.com/mrc/)
+4. You will need a Webcam record your experiences. The [Logitech BRIO Ultra HD](https://amzn.to/3g4OCkb) which is what I used in YouTube (The webcam will be calibrated with (MRC) and then OBI has all the tools needed to send the info from the Oculus Quest to OBI for recording)
