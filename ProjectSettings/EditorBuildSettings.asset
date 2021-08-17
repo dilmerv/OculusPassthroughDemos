@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
     guid: 9afeada2bbd240b4981cfb6abb525418
   - enabled: 0
@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/SurfaceProjectedPassthrough.unity
     guid: e36011c54ca6d994c94449356fa5cee6
+  - enabled: 1
+    path: Assets/Scenes/UnderlayPassthrough.unity
+    guid: d52748548ee9f3340947121acd5a3ca5
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 25399d534df8f7447a0f8fa7a948b9e5,
       type: 2}
