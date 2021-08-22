@@ -603,8 +603,6 @@ MonoBehaviour:
     type: 3}
   passthroughLayerReconstructuredPrefab: {fileID: 5958198870572816695, guid: fec33e22704a94b44bb2f71ecc22ab75,
     type: 3}
-  passthroughLayerUserDefined: {fileID: 0}
-  passthroughLayerReconstructed: {fileID: 0}
   tilesRoot: {fileID: 1274754007}
 --- !u!1 &329442389
 GameObject:
@@ -4409,8 +4407,8 @@ TextMesh:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8887122113150722905}
   m_Text: "1. Press A to toggle through (no passthrough, surface \npassthrough, and
-    reconstructured passthrough)\n2. Press B to shuffle surface passthrough tiles\n3.
-    Press Right thumbstick left/right to fade Passthrough"
+    reconstructured passthrough)\n2. Press B same as above except that it doesn't
+    apply\nthe passthrough layer to a random tile."
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
