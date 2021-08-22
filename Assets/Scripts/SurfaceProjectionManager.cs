@@ -35,12 +35,12 @@ public class SurfaceProjectionManager : Singleton<SurfaceProjectionManager>
         ToggleSurfaceType();
     }
 
-    public void ProjectionToTilesAction(bool addProjection = true)
+    public void ProjectionToTilesAction(bool addProjection = true, bool randomizeTiles = false)
     {
         foreach (var tile in surfacePassthroughTiles)
         {
             if (addProjection)
-                tile.AddProjection();
+                tile.AddProjection(randomizeTiles);
             else
                 tile.RemoveProjection();
         }
@@ -51,11 +51,15 @@ public class SurfaceProjectionManager : Singleton<SurfaceProjectionManager>
         // A Button
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
-            ToggleSurfaceType();
+            ToggleSurfaceType(randomizeTiles: true);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            ToggleSurfaceType(randomizeTiles: false);
         }
     }
 
-    private void ToggleSurfaceType()
+    private void ToggleSurfaceType(bool randomizeTiles = false)
     {
         Logger.Instance.LogInfo("Toggling passthrough projection surface type");
 
@@ -73,7 +77,7 @@ public class SurfaceProjectionManager : Singleton<SurfaceProjectionManager>
 
             EnableProjectionSurfaceType(OVRPassthroughLayer.ProjectionSurfaceType.UserDefined);
 
-            ProjectionToTilesAction(addProjection: true);
+            ProjectionToTilesAction(addProjection: true, randomizeTiles);
         }
     }
 

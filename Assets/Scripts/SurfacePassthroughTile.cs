@@ -16,18 +16,25 @@ public class SurfacePassthroughTile : MonoBehaviour
         outlineMeshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
-    public void AddProjection()
+    public void AddProjection(bool randomize = true)
     {
         // randomize projection creation
-        if (Random.Range(0, 2) == CREATE_PASSTHROUGH_LAYER_NUM)
+        if (Random.Range(0, 2) == CREATE_PASSTHROUGH_LAYER_NUM && randomize)
         {
-            SurfaceProjectionManager.Instance.PassthroughLayer
-                .AddSurfaceGeometry(projectionMeshFilter.gameObject, true);
-
-            outlineMeshRenderer.enabled = false;
-
-            surfaceProjectionAdded = true;
+            AddProjection();
         }
+        else
+        {
+            AddProjection();
+        }
+    }
+
+    private void AddProjection()
+    {
+        SurfaceProjectionManager.Instance.PassthroughLayer
+                        .AddSurfaceGeometry(projectionMeshFilter.gameObject, true);
+        outlineMeshRenderer.enabled = false;
+        surfaceProjectionAdded = true;
     }
 
     public void RemoveProjection()
