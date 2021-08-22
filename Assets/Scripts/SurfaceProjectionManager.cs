@@ -4,52 +4,96 @@ using UnityEngine;
 public class SurfaceProjectionManager : Singleton<SurfaceProjectionManager>
 {
     [SerializeField]
-    private OVRPassthroughLayer passthroughLayer;
+    private GameObject passthroughLayerUserDefinedPrefab;
+
+    private GameObject passthroughLayerUserDefinedGameObject;
+
+    [SerializeField]
+    private GameObject passthroughLayerReconstructuredPrefab;
+
+    private GameObject passthroughLayerReconstructuredGameObject;
+
+    private OVRPassthroughLayer passthroughLayerUserDefined;
+
+    private OVRPassthroughLayer passthroughLayerReconstructed;
 
     [SerializeField]
     private Transform tilesRoot;
 
-    public OVRPassthroughLayer PassthroughLayer => passthroughLayer;
+    public OVRPassthroughLayer PassthroughLayer => passthroughLayerUserDefined;
 
     public Transform TilesRoot => tilesRoot;
 
-    // default is user defined
-    private bool reconstructedPassthrough = true;
+    // default is reconstructed
+    private bool reconstructedPassthrough = false;
 
-    public void ShuffleTiles()
+    private SurfacePassthroughTile[] surfacePassthroughTiles;
+
+    private void Awake()
     {
-        var tiles = tilesRoot.GetComponentsInChildren<SurfacePassthroughTile>();
+        surfacePassthroughTiles = tilesRoot.GetComponentsInChildren<SurfacePassthroughTile>();
+        ToggleSurfaceType();
+    }
 
-        foreach (var tile in tiles)
+    public void ProjectionToTilesAction(bool addProjection = true)
+    {
+        foreach (var tile in surfacePassthroughTiles)
         {
-            tile.RandomToggle();
+            if (addProjection)
+                tile.AddProjection();
+            else
+                tile.RemoveProjection();
         }
     }
 
     public void Update()
     {
-        // A button
+        // A Button
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
-            Logger.Instance.LogInfo("Shuffle tiles executed");
-            ShuffleTiles();
+            ToggleSurfaceType();
         }
+    }
 
-        // B button
-        if (OVRInput.GetDown(OVRInput.Button.Two))
+    private void ToggleSurfaceType()
+    {
+        Logger.Instance.LogInfo("Toggling passthrough projection surface type");
+
+        reconstructedPassthrough = !reconstructedPassthrough;
+
+        if (reconstructedPassthrough)
         {
-            reconstructedPassthrough = !reconstructedPassthrough;
+            Logger.Instance.LogInfo("Toggle passthrough set to reconstructed");
 
-            if(reconstructedPassthrough)
-            {
-                passthroughLayer.projectionSurfaceType = OVRPassthroughLayer.ProjectionSurfaceType.Reconstructed;
-                Logger.Instance.LogInfo("Toggle passthrough set to reconstructed");
-            }
-            else
-            {
-                passthroughLayer.projectionSurfaceType = OVRPassthroughLayer.ProjectionSurfaceType.UserDefined;
-                Logger.Instance.LogInfo("Toggle passthrough set to user defined");
-            }
+            EnableProjectionSurfaceType(OVRPassthroughLayer.ProjectionSurfaceType.Reconstructed);
+        }
+        else
+        {
+            Logger.Instance.LogInfo("Toggle passthrough set to user defined");
+
+            EnableProjectionSurfaceType(OVRPassthroughLayer.ProjectionSurfaceType.UserDefined);
+
+            ProjectionToTilesAction(addProjection: true);
+        }
+    }
+
+    private void EnableProjectionSurfaceType(OVRPassthroughLayer.ProjectionSurfaceType projectionSurfaceType 
+        = OVRPassthroughLayer.ProjectionSurfaceType.Reconstructed)
+    {
+        if (passthroughLayerReconstructuredGameObject != null)
+            DestroyImmediate(passthroughLayerReconstructuredGameObject);
+        if (passthroughLayerUserDefinedGameObject != null)
+            DestroyImmediate(passthroughLayerUserDefinedGameObject);
+
+        if (projectionSurfaceType == OVRPassthroughLayer.ProjectionSurfaceType.Reconstructed) 
+        {
+            passthroughLayerReconstructuredGameObject = Instantiate(passthroughLayerReconstructuredPrefab);
+            passthroughLayerReconstructed = passthroughLayerReconstructuredGameObject.GetComponent<OVRPassthroughLayer>();
+        }
+        else
+        {
+            passthroughLayerUserDefinedGameObject = Instantiate(passthroughLayerUserDefinedPrefab);
+            passthroughLayerUserDefined = passthroughLayerUserDefinedGameObject.GetComponent<OVRPassthroughLayer>();
         }
     }
 }

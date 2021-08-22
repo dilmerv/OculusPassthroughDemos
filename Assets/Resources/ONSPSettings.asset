@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20553fac56ec59645857c0732b787431, type: 3}
-  m_Name: OVRBuildConfig
+  m_Script: {fileID: 11500000, guid: ad074644ff568a14187a3690cfbd7534, type: 3}
+  m_Name: ONSPSettings
   m_EditorClassIdentifier: 
-  androidSDKPath: 
-  gradlePath: 
-  jdkPath: 
+  voiceLimit: 64

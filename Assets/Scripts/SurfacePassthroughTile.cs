@@ -6,7 +6,7 @@ public class SurfacePassthroughTile : MonoBehaviour
 
     private MeshRenderer outlineMeshRenderer;
 
-    private const int ACTIVATE_TILE_NUM = 1;
+    private bool surfaceProjectionAdded = false;
 
     void Start()
     {
@@ -14,21 +14,23 @@ public class SurfacePassthroughTile : MonoBehaviour
         outlineMeshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
-    public void RandomToggle()
+    public void AddProjection()
     {
-        if(Random.Range(0,1) == ACTIVATE_TILE_NUM)
-        {
-            SurfaceProjectionManager.Instance.PassthroughLayer
+        SurfaceProjectionManager.Instance.PassthroughLayer
             .AddSurfaceGeometry(projectionMeshFilter.gameObject, true);
 
-            outlineMeshRenderer.enabled = false;
-        }
-        else
+        outlineMeshRenderer.enabled = false;
+
+        surfaceProjectionAdded = true;
+    }
+
+    public void RemoveProjection()
+    {
+        if (surfaceProjectionAdded)
         {
             SurfaceProjectionManager.Instance.PassthroughLayer
-           .RemoveSurfaceGeometry(projectionMeshFilter.gameObject);
-
-            outlineMeshRenderer.enabled = true;
+                .RemoveSurfaceGeometry(projectionMeshFilter.gameObject);
         }
+        outlineMeshRenderer.enabled = true;
     }
 }
