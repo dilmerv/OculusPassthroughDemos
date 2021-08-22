@@ -32,7 +32,7 @@ public class SurfaceProjectionManager : Singleton<SurfaceProjectionManager>
     private void Awake()
     {
         surfacePassthroughTiles = tilesRoot.GetComponentsInChildren<SurfacePassthroughTile>();
-        ToggleSurfaceType();
+        ToggleSurfaceType(randomizeTiles: false);
     }
 
     public void ProjectionToTilesAction(bool addProjection = true, bool randomizeTiles = false)
@@ -59,7 +59,7 @@ public class SurfaceProjectionManager : Singleton<SurfaceProjectionManager>
         }
     }
 
-    private void ToggleSurfaceType(bool randomizeTiles = false)
+    private void ToggleSurfaceType(bool randomizeTiles)
     {
         Logger.Instance.LogInfo("Toggling passthrough projection surface type");
 

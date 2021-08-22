@@ -19,9 +19,16 @@ public class SurfacePassthroughTile : MonoBehaviour
     public void AddProjection(bool randomize = true)
     {
         // randomize projection creation
-        if (Random.Range(0, 2) == CREATE_PASSTHROUGH_LAYER_NUM && randomize)
+        if (randomize)
         {
-            AddProjection();
+            if (Random.Range(0, 2) == CREATE_PASSTHROUGH_LAYER_NUM)
+            {
+                AddProjection();
+            }
+            else
+            {
+                outlineMeshRenderer.enabled = true;
+            }
         }
         else
         {
